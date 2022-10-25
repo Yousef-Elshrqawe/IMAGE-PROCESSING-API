@@ -1,0 +1,28 @@
+/*
+ * Sample code used throughout the Udacity course
+ */
+import {
+  DisplayProcessor,
+  SpecReporter,
+  StacktraceOption
+} from 'jasmine-spec-reporter';
+import SuiteInfo = jasmine.SuiteInfo;
+
+class CustomProcessor extends DisplayProcessor {
+    public displayJasmineStarted(info: SuiteInfo, log: string): string {
+        return `TypeScript ${log}`;
+    }
+    }
+
+    const reporter = () => {
+    jasmine.getEnv().clearReporters();
+    jasmine.getEnv().addReporter(new SpecReporter({
+        spec: {
+        displayStacktrace: StacktraceOption.PRETTY
+        },
+        customProcessors: [CustomProcessor]
+    }));
+
+    };
+
+    export = reporter;
